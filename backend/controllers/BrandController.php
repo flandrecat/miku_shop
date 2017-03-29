@@ -7,6 +7,7 @@ use xj\uploadify\UploadAction;
 use yii\data\Pagination;
 use yii\web\Request;
 use yii\web\UploadedFile;
+use crazyfd\qiniu\Qiniu;
 
 class BrandController extends \yii\web\Controller
 {
@@ -172,10 +173,24 @@ class BrandController extends \yii\web\Controller
                 'afterValidate' => function (UploadAction $action) {},
                 'beforeSave' => function (UploadAction $action) {},
                 'afterSave' => function (UploadAction $action) {
-                    $action->output['fileUrl'] = $action->getWebUrl();
+                    //$action->output['fileUrl'] = $action->getWebUrl();
                     $action->getFilename(); // "image/yyyymmddtimerand.jpg"
                     $action->getWebUrl(); //  "baseUrl + filename, /upload/image/yyyymmddtimerand.jpg"
                     $action->getSavePath(); // "/var/www/htdocs/upload/image/yyyymmddtimerand.jpg"
+
+                    $ak = 'TEX6NtwC5qtQRc_WWbItDSNL0lAaLhxo31gjYnkx';
+                    $sk = 'I-IAl0T4Nz3DKbGpERI5lq8FKcmCzLwHwwbCbiYc';
+                    $domain = 'http://onkdikd9h.bkt.clouddn.com/';
+                    $bucket = 'mikushop';
+                    $qiniu = new Qiniu($ak, $sk,$domain, $bucket);
+
+                    //将本地图片上传到七牛云
+                    $qiniu->uploadFile($action->getSavePath(),$action->getFilename());
+                    //获取图片在七牛云上的地址
+                    $url = $qiniu->getLink($action->getFilename());
+                    //将七牛云的地址返回给前端JS
+                    $action->output['fileUrl'] = $url;
+
                 },
             ],
         ];

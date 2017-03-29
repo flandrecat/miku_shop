@@ -28,6 +28,7 @@ class ActicleDetail extends \yii\db\ActiveRecord
     {
         return [
             [['content'], 'string'],
+            [['content'], 'required'],
         ];
     }
 

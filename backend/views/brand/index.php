@@ -18,7 +18,7 @@ echo \yii\bootstrap\Html::a('回收站',['brand/del'],['class'=>'btn btn-warning
         <td><?=$brand->id?></td>
         <td><?=$brand->name?></td>
         <td><?=$brand->intro?></td>
-        <td><?=$brand->logo?\yii\bootstrap\Html::img('@web'.$brand->logo ,['width'=>30]):''?></td>
+        <td><?=$brand->logo?\yii\bootstrap\Html::img($brand->logoUrl() ,['width'=>30]):''?></td>
         <td><?=$brand->sort?></td>
         <td><?=\backend\models\Brand::$status_name[$brand->status]?></td>
         <td>

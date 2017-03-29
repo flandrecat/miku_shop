@@ -38,6 +38,7 @@ class Acticle extends \yii\db\ActiveRecord
             [['acticle_category_id', 'status', 'sort', 'inputtime'], 'integer'],
             [['intro'], 'string'],
             [['name'], 'string', 'max' => 50],
+            [['name'], 'unique','message'=>'已经存在该文章名字'],
         ];
     }
 

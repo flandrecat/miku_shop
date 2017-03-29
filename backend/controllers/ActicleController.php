@@ -77,12 +77,12 @@ class ActicleController extends \yii\web\Controller
             //添加时间
             $model->inputtime = time();
             if($model->validate()){
-                //保存数据
-                $model->save();
                 $id = \Yii::$app->db->getLastInsertID();
                 if($details->validate()){
-                   // $details->acticle_id = $id;
+                   //$details->acticle_id = $id;
                     //保存ID
+                //保存数据
+                $model->save();
                     $details->save();
                     \Yii::$app->session->setFlash('success','修改成功');
                     return $this->redirect(['acticle/index']);

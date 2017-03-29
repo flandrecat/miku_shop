@@ -2,6 +2,7 @@
 
 namespace backend\controllers;
 
+use backend\models\Acticle;
 use backend\models\ActicleCategory;
 use yii\data\Pagination;
 use yii\web\Request;
@@ -76,8 +77,13 @@ class ActicleCategoryController extends \yii\web\Controller
 
     public function actionDelete($id)
     {
-        ActicleCategory::findOne($id)->delete();
-
+        $acticle_category_id = $id;
+        $model = Acticle::findAll(['acticle_category_id'=>$acticle_category_id]);
+        if($model){
+            \Yii::$app->session->setFlash('danger','分类下面还有文章!请先删除文章!');
+        }else{
+            ActicleCategory::findOne($id)->delete();
+        }
         return $this->redirect(['acticle-category/index']);
     }
 

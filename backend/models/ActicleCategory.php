@@ -37,6 +37,7 @@ class ActicleCategory extends \yii\db\ActiveRecord
             [['intro'], 'string'],
             [['status', 'sort', 'is_help'], 'integer'],
             [['name'], 'string', 'max' => 50],
+            [['name'], 'unique','message'=>'已经存在该分类'],
         ];
     }
 

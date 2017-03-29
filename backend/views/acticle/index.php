@@ -23,7 +23,8 @@ echo \yii\bootstrap\Html::a('添加文章',['acticle/add'],['class'=>'btn btn-in
             <td><?=\backend\models\Acticle::$status_name[$acticle->status]?></td>
             <td><?=$acticle->sort?></td>
             <td><?=date('Y-m-d H:i:s',$acticle->inputtime)?></td>
-            <td></td>
+            <td>
+            </td>
             <td>
                 <?=\yii\bootstrap\Html::a('修改',['acticle/edit','id'=>$acticle->id],['class'=>'btn btn-success'])?>
                 <?=\yii\bootstrap\Html::a('删除',['acticle/delete','id'=>$acticle->id],['class'=>'btn btn-danger'])?>

@@ -16,6 +16,7 @@ use Yii;
  */
 class Brand extends \yii\db\ActiveRecord
 {
+
     //图片
     //public $logo_img;
 
@@ -62,5 +63,13 @@ class Brand extends \yii\db\ActiveRecord
             //'logo_img'=>'LOGO',
             //'code'=>'验证码',
         ];
+    }
+
+    public function logoUrl()
+    {
+        if(strpos($this->logo,'http://')===false){
+            return '@web'.$this->logo;
+        }
+        return $this->logo;
     }
 }
