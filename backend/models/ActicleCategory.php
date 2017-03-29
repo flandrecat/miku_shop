@@ -54,4 +54,9 @@ class ActicleCategory extends \yii\db\ActiveRecord
             'is_help' => '是否是帮助相关的分类',
         ];
     }
+
+    public function getActicle()
+    {
+        return $this->hasMany(Acticle::className(),['acticle_category_id'=>'id']);
+    }
 }

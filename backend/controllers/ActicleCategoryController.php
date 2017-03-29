@@ -3,6 +3,7 @@
 namespace backend\controllers;
 
 use backend\models\ActicleCategory;
+use yii\data\Pagination;
 use yii\web\Request;
 
 class ActicleCategoryController extends \yii\web\Controller
@@ -10,9 +11,20 @@ class ActicleCategoryController extends \yii\web\Controller
     public function actionIndex()
     {
         //实例化对象
-        $model = ActicleCategory::find()->all();
+        $model = ActicleCategory::find();
+        //总条数
+        $total = $model->count();
+        //每页显示多少条
+        $pageSize = 3;
+        //当前在第几页
+        $pages = new Pagination([
+           'totalCount' => $total,
+            'pageSize' => $pageSize,
+        ]);
+        //设置读取数据sql
+        $acticle = $model->limit($pages->limit)->offset($pages->offset)->all();
 
-        return $this->render('index',['model'=>$model]);
+        return $this->render('index',['acticles'=>$acticle,'pages'=>$pages]);
     }
 
     public function actionAdd()

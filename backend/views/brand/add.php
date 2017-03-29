@@ -18,7 +18,7 @@ echo Uploadify::widget([
     'renderTag' => false,
     'jsOptions' => [
         'width' => 120,
-        'height' => 40,
+        'height' => 30,
         'onUploadError' => new JsExpression(<<<EOF
 function(file, errorCode, errorMsg, errorString) {
     console.log('The file ' + file.name + ' could not be uploaded: ' + errorString + errorCode + errorMsg);

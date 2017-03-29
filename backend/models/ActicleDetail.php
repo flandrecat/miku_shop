@@ -7,7 +7,7 @@ use Yii;
 /**
  * This is the model class for table "acticle_detail".
  *
- * @property integer $id
+ * @property integer $acticle_id
  * @property string $content
  */
 class ActicleDetail extends \yii\db\ActiveRecord
@@ -37,7 +37,7 @@ class ActicleDetail extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
+            'acticle_id' => 'ID',
             'content' => '文章类容',
         ];
     }

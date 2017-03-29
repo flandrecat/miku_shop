@@ -1,4 +1,5 @@
 <?php
+echo '<div class=""><h4>文章分类</h4></div>';
 echo \yii\bootstrap\Html::a('增加分类',['acticle-category/add'],['class'=>'btn btn-info']);
 ?>
 <table class="table">
@@ -11,18 +12,26 @@ echo \yii\bootstrap\Html::a('增加分类',['acticle-category/add'],['class'=>'b
         <th>是否是帮助相关分类</th>
         <th>操作</th>
     </tr>
-    <?php foreach ($model as $mode):?>
+    <?php foreach ($acticles as $acticle):?>
         <tr>
-            <td><?=$mode->id?></td>
-            <td><?=$mode->name?></td>
-            <td><?=$mode->intro?></td>
-            <td><?=\backend\models\ActicleCategory::$status_name[$mode->status]?></td>
-            <td><?=$mode->sort?></td>
-            <td><?=\backend\models\ActicleCategory::$is_help_name[$mode->is_help]?></td>
+            <td><?=$acticle->id?></td>
+            <td><?=$acticle->name?></td>
+            <td><?=$acticle->intro?></td>
+            <td><?=\backend\models\ActicleCategory::$status_name[$acticle->status]?></td>
+            <td><?=$acticle->sort?></td>
+            <td><?=\backend\models\ActicleCategory::$is_help_name[$acticle->is_help]?></td>
             <td>
-                <?=\yii\bootstrap\Html::a('修改',['acticle-category/edit','id'=>$mode->id],['class'=>'btn btn-success']) ?>
-                <?=\yii\bootstrap\Html::a('删除',['acticle-category/delete','id'=>$mode->id],['class'=>'btn btn-danger']) ?>
+                <?=\yii\bootstrap\Html::a('修改',['acticle-category/edit','id'=>$acticle->id],['class'=>'btn btn-success']) ?>
+                <?=\yii\bootstrap\Html::a('删除',['acticle-category/delete','id'=>$acticle->id],['class'=>'btn btn-danger']) ?>
             </td>
         </tr>
     <?php endforeach;?>
 </table>
+<?php
+echo \yii\widgets\LinkPager::widget([
+   'pagination' => $pages,
+    'nextPageLabel'=>'下一页',
+    'prevPageLabel'=>'上一页',
+]);
+
+
