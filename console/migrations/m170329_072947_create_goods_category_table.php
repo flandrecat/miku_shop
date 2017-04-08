@@ -15,10 +15,11 @@ class m170329_072947_create_goods_category_table extends Migration
         $this->createTable('goods_category', [
             'id' => $this->primaryKey()->unsigned()->notNull(),
             'name'=>$this->string(50)->notNull()->comment('名称'),
-            'parent_id'=>$this->integer(3)->unsigned()->notNull()->defaultValue(0)->comment('父分类'),
-            'lft'=>$this->smallInteger(5)->unsigned()->notNull()->defaultValue(0)->comment('左边界'),
-            'rght'=>$this->smallInteger(5)->unsigned()->notNull()->defaultValue(0)->comment('右边界'),
-            'level'=>$this->integer(3)->unsigned()->notNull()->defaultValue(0)->comment('级别'),
+            'tree' => $this->integer()->notNull()->comment('树'),
+            'parent_id'=>$this->integer(3)->unsigned()->notNull()->comment('父分类'),
+            'lft'=>$this->smallInteger(5)->unsigned()->notNull()->comment('左边界'),
+            'rgt'=>$this->smallInteger(5)->unsigned()->notNull()->comment('右边界'),
+            'depth' => $this->integer()->unsigned()->notNull()->comment('级别'),
             'intro'=>$this->text()->comment('简介'),
         ]);
     }

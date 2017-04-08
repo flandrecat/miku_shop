@@ -2,6 +2,8 @@
 
 namespace backend\models;
 
+use backend\components\GoodsCategoryQuery;
+use creocoder\nestedsets\NestedSetsBehavior;
 use Yii;
 
 /**
@@ -9,10 +11,11 @@ use Yii;
  *
  * @property string $id
  * @property string $name
+ * @property integer $tree
  * @property string $parent_id
  * @property integer $lft
- * @property integer $rght
- * @property string $level
+ * @property integer $rgt
+ * @property string $depth
  * @property string $intro
  */
 class GoodsCategory extends \yii\db\ActiveRecord
@@ -31,10 +34,11 @@ class GoodsCategory extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name'], 'required'],
-            [['parent_id', 'lft', 'rght', 'level'], 'integer'],
+            [['name', 'parent_id'], 'required'],
+            [['tree', 'parent_id', 'lft', 'rgt', 'depth'], 'integer'],
             [['intro'], 'string'],
             [['name'], 'string', 'max' => 50],
+            [['name'], 'unique','message'=>'已经存在该分类'],
         ];
     }
 
@@ -46,11 +50,36 @@ class GoodsCategory extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'name' => '名称',
+            'tree' => '树',
             'parent_id' => '父分类',
             'lft' => '左边界',
-            'rght' => '右边界',
-            'level' => '级别',
+            'rgt' => '右边界',
+            'depth' => '级别',
             'intro' => '简介',
         ];
+    }
+
+    public function behaviors() {
+        return [
+            'tree' => [
+                'class' => NestedSetsBehavior::className(),
+                 'treeAttribute' => 'tree',
+                // 'leftAttribute' => 'lft',
+                // 'rightAttribute' => 'rgt',
+                // 'depthAttribute' => 'depth',
+            ],
+        ];
+    }
+
+    public function transactions()
+    {
+        return [
+            self::SCENARIO_DEFAULT => self::OP_ALL,
+        ];
+    }
+
+    public static function find()
+    {
+        return new GoodsCategoryQuery(get_called_class());
     }
 }

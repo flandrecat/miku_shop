@@ -69,4 +69,5 @@ class Acticle extends \yii\db\ActiveRecord
     {
         return $this->hasOne(ActicleCategory::className(),['id'=>'acticle_category_id']);
     }
+
 }

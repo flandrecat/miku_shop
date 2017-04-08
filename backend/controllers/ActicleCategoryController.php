@@ -2,6 +2,7 @@
 
 namespace backend\controllers;
 
+use backend\filters\AccessFilter;
 use backend\models\Acticle;
 use backend\models\ActicleCategory;
 use yii\data\Pagination;
@@ -9,6 +10,16 @@ use yii\web\Request;
 
 class ActicleCategoryController extends \yii\web\Controller
 {
+
+    public function behaviors()
+    {
+        return [
+            'accessAction'=>[
+                'class'=>AccessFilter::className(),
+                'only'=>['index','add','edit','delete']
+            ]
+        ];
+    }
     public function actionIndex()
     {
         //实例化对象

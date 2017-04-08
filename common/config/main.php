@@ -5,8 +5,10 @@ return [
     'components' => [
         /*'defaultRoute'=>'index/list',*/
         'cache' => [
-
             'class' => 'yii\caching\FileCache',
+        ],
+        'authManager'=>[
+            'class'=>yii\rbac\DbManager::className(),
         ],
     ],
 ];

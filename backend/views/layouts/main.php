@@ -34,12 +34,13 @@ AppAsset::register($this);
             'class' => 'navbar-inverse navbar-fixed-top',
         ],
     ]);
-    $menuItems = [
-        ['label' => 'Home', 'url' => ['/site/index']],
-    ];
+   $menuItems = [
+            ['label' => '首页', 'url' => ['/site/index']],
+        ];
     if (Yii::$app->user->isGuest) {
         $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
     } else {
+        $menuItems = \yii\helpers\ArrayHelper::merge($menuItems,Yii::$app->user->identity->getMenuItems());
         $menuItems[] = '<li>'
             . Html::beginForm(['/site/logout'], 'post')
             . Html::submitButton(
