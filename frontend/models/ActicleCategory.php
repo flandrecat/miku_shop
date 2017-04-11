@@ -1,6 +1,6 @@
 <?php
 
-namespace backend\models;
+namespace frontend\models;
 
 use Yii;
 
@@ -61,7 +61,7 @@ class ActicleCategory extends \yii\db\ActiveRecord
         return $this->hasMany(Acticle::className(),['acticle_category_id'=>'id']);
     }
 
-    public function getActicleCategory(){
+    public static function getActicleCategory(){
 
         return self::find()->where(['is_help'=>'1'])->all();
     }
