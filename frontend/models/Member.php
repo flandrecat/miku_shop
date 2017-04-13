@@ -168,6 +168,11 @@ class Member extends \yii\db\ActiveRecord  implements IdentityInterface
 
     public function validateSmsCode()
     {
-
+        //根据电话号码从session获取短信验证码
+        $code = Yii::$app->session->get('tel_'.$this->tel);
+        //和表单提交的短信验证码对比
+        if($code != $this->smscode){
+            $this->addError('smscode','验证码不正确');
+        }
     }
 }

@@ -22,11 +22,16 @@ class IndexAsset extends  AssetBundle
         'style/index.css',
         'style/bottomnav.css',
         'style/footer.css',
+        'style/list.css',
+        'style/common.css',
+
+
     ];
     public $js = [
         'js/jquery-1.8.3.min.js',
         'js/header.js',
         'js/index.js',
+        'js/list.js',
     ];
 
     public $depends = [
@@ -34,7 +39,7 @@ class IndexAsset extends  AssetBundle
         //'yii/web/yiiAsset'
     ];
 
-/*    public $jsOptions = [
+    public $jsOptions = [
         'position' => View::POS_HEAD
-    ];*/
+    ];
 }

@@ -8,7 +8,7 @@ use backend\models\RoleForm;
 class RoleController extends \yii\web\Controller
 {
 
-    public function behaviors()
+/*    public function behaviors()
     {
         return [
             'accessAction'=>[
@@ -16,7 +16,7 @@ class RoleController extends \yii\web\Controller
                 'only'=>['index','add','edit','delete'],
             ]
         ];
-    }
+    }*/
 
     public function actionIndex()
     {

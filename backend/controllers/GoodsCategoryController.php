@@ -13,7 +13,7 @@ use yii\web\Request;
 class GoodsCategoryController extends \yii\web\Controller
 {
 
-    public function behaviors()
+/*    public function behaviors()
     {
         return [
             'accessAction'=>[
@@ -21,7 +21,7 @@ class GoodsCategoryController extends \yii\web\Controller
                 'only'=>['index','add','edit','delete'],
             ]
         ];
-    }
+    }*/
 
     public function actionIndex()
     {
@@ -94,7 +94,7 @@ class GoodsCategoryController extends \yii\web\Controller
                     $parent_russia = GoodsCategory::findOne(['id'=>$model->parent_id]);
                     $model->prependTo($parent_russia);
                 }
-                \Yii::$app->session->setFlash('success','添加成功');
+                \Yii::$app->session->setFlash('success','修改成功');
                 return $this->redirect(['goods-category/index']);
             }
         }

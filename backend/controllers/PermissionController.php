@@ -9,7 +9,7 @@ use yii\web\Request;
 class PermissionController extends \yii\web\Controller
 {
 
-    public function behaviors()
+ /*   public function behaviors()
     {
         return [
             'accessAction'=>[
@@ -17,7 +17,7 @@ class PermissionController extends \yii\web\Controller
                 'only'=>['index','add','edit','delete'],
             ]
         ];
-    }
+    }*/
     public function actionIndex()
     {
         $authManager = \Yii::$app->authManager;

@@ -38,6 +38,14 @@ class MemberController extends \yii\web\Controller
 
     }
 
+    public function actionLogout()
+    {
+        //清除session中的数据
+        \Yii::$app->user->logout();
+        \Yii::$app->session->setFlash('success','退出成功');
+        return $this->redirect('index/login');
+    }
+
     public function actionRegister()
     {
         $model = new Member();

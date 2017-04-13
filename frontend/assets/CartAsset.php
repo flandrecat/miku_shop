@@ -2,16 +2,17 @@
 /**
  * Created by PhpStorm.
  * User: asus
- * Date: 2017/4/9
- * Time: 16:02
+ * Date: 2017/4/13
+ * Time: 15:13
  */
 
 namespace frontend\assets;
 
+
 use yii\web\AssetBundle;
 use yii\web\View;
 
-class AddressAsset extends AssetBundle
+class CartAsset extends AssetBundle
 {
     public $basePath = '@webroot';
     public $baseUrl = '@web';
@@ -19,32 +20,21 @@ class AddressAsset extends AssetBundle
         'style/base.css',
         'style/global.css',
         'style/header.css',
-        'style/home.css',
-        'style/address.css',
-        'style/bottomnav.css',
+        'style/cart.css',
         'style/footer.css',
     ];
     public $js = [
-         'js\jquery-1.8.3.min.js',
-         'js\header.js',
-         'js\home.js',
-         //'yii\web\js\home.js',
-         'js/jsAddress.js',
-        'js/jqzoom-core.js',
+        'js/jquery-1.8.3.min.js',
+        'js/cart1.js',
+
     ];
+
     public $depends = [
-        'yii\web\JqueryAsset',
+        //'yii\web\JqueryAsset',
+        //'yii/web/yiiAsset'
     ];
 
     public $jsOptions = [
-         'position' => View::POS_HEAD
+        'position' => View::POS_HEAD
     ];
 }
-
-
-
-
-
-
-
-
