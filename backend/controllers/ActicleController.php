@@ -27,13 +27,13 @@ class ActicleController extends \yii\web\Controller
         $details = ActicleDetail::find()->all();
 
         //总页数
-        $total = $model->count();
+/*        $total = $model->count();
         //每页显示的条数
-        $pageSize = 3;
+        $pageSize = 3;*/
         //当前页数
         $pages = new Pagination([
-           'totalCount' => $total,
-            'pageSize'=> $pageSize,
+           'totalCount' => $model->count(),
+            'pageSize'=> 3,
         ]);
         //设置SQL语句
         $acticle = $model->limit($pages->limit)->offset($pages->offset)->all();

@@ -25,8 +25,8 @@ class cartWidget extends Widget
             $goods = Goods::findOne(['id'=>$k]);
             //图片地址
             $img = Html::img(\Yii::$app->params['picUrl'].$goods->logo);
-            $html .='<tr>
-            <td class="col1"><a href="">'.$img.'</a>  <strong><a href=""></a></strong></td><td class="col3">￥<span>'.$goods->shop_price.'</span></td>
+            $html .='<tr data-goods-id="'.$goods->id.'">
+            <td class="col1"><a href="">'.$img.'</a>  <strong><a href="">'.$goods->name.'</a></strong></td><td class="col3">￥<span>'.$goods->shop_price.'</span></td>
                          <td class="col4">
                             <a href="javascript:;" class="reduce_num"></a>
                             <input type="text" name="amount" value='.$v.' class="amount"/>
@@ -37,5 +37,6 @@ class cartWidget extends Widget
                         </tr>';
         }
         return $html;
+
     }
 }

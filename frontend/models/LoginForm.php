@@ -57,6 +57,32 @@ class LoginForm extends Model
                     //var_dump($user);exit;
                    //密码验证成功保存session
                    \Yii::$app->user->login($user,3600*24*30);
+                   //登录后查看cookie中有没有购物记录
+                   //取出购物车数据
+                   $member_id = \Yii::$app->user->id;//获取当前用户ID
+                   $cookies = \Yii::$app->request->cookies;
+                   $cookie = $cookies->get('cart');
+                   //判断是否cookie为空
+                   if($cookie != null){
+                       //cookie有值
+                       $cart = unserialize($cookie->value);
+                       //查看该用户的购物车记录
+                       $model = new Cart();
+                       foreach ($cart as $k=>$v){
+                            $row = Cart::find()->where(['member_id'=>$member_id])->andWhere(['goods_id'=>$k])->one();
+                               if($row){
+                                    //如果有商品则在基础上增加数量
+                                    $row->amount += $v;
+                                    $row->save();
+                               }else{
+                                    //没有则新增
+                                   $model->goods_id = $k;
+                                   $model->member_id = $member_id;
+                                   $model->amount = $v;
+                                   $model->save();
+                               }
+                       }
+                   }
                    return true;
                }else{
                    $this->addError('password','密码错误');
