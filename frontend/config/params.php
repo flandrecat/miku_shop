@@ -2,7 +2,7 @@
 return [
     'adminEmail' => 'admin@example.com',
     'picUrl'=>'http://admin.yiishop.com',
-    'weachat'=>[
+    'wechat'=>[
         /**
          * Debug 模式，bool 值：true/false
          *
